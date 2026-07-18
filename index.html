@@ -77,175 +77,177 @@
     <footer class="border-t border-gray-800 py-8 text-center text-sm text-gray-500">
         <p>Made with 🔥 in India | © 2026 1ClickStudio Pro</p>
     </footer>
+<!-- JAVASCRIPT FOR LOGIC -->
+<script>
+    // Exactly 50 styles as requested
+    const styles = [
+        { id: 1, name: "Anime", prompt: "Transform into Studio Ghibli anime style, soft lighting, detailed" },
+        { id: 2, name: "3D Pixar", prompt: "Convert into 3D Pixar character, big eyes, cute, 3D render" },
+        { id: 3, name: "Cinematic Poster", prompt: "Cinematic movie poster, dramatic lighting, title at top" },
+        { id: 4, name: "Cyberpunk Gamer", prompt: "Cyberpunk style, RGB gaming setup background, neon" },
+        { id: 5, name: "God Look", prompt: "Divine god look, glowing background, epic" },
+        { id: 6, name: "Rich Billionaire", prompt: "Billionaire look, black suit, Lamborghini, luxury" },
+        { id: 7, name: "AI Action Figure", prompt: "Toy action figure inside plastic box packaging" },
+        { id: 8, name: "Barbie/Ken", prompt: "Barbie doll style, pink dreamhouse background" },
+        { id: 9, name: "Lego", prompt: "Made completely of Lego blocks, toy photography" },
+        { id: 10, name: "Oil Painting", prompt: "Renaissance oil painting, museum quality, brush strokes" },
+        { id: 11, name: "Old Money", prompt: "1920s vintage black and white, luxury suit, old money" },
+        { id: 12, name: "90s Yearbook", prompt: "90s school yearbook photo, retro filter, grainy" },
+        { id: 13, name: "Marvel Hero", prompt: "Marvel superhero costume, city destruction background" },
+        { id: 14, name: "DBZ", prompt: "Dragon Ball Z character, energy aura, powering up" },
+        { id: 15, name: "Gaming Setup BG", prompt: "Change background to pro RGB gaming setup" },
+        { id: 16, name: "Beach BG", prompt: "Change background to Maldives beach, sunset, palm trees" },
+        { id: 17, name: "Royal Wedding", prompt: "Royal Indian wedding, sherwani, palace background" },
+        { id: 18, name: "AI Baby", prompt: "Cute 5 year old baby version of this person" },
+        { id: 19, name: "Glass Portrait", prompt: "Glass morphism effect, transparent, modern" },
+        { id: 20, name: "Tattoo", prompt: "Full sleeve realistic tattoo on arms, detailed" },
+        { id: 21, name: "K-Pop Idol", prompt: "K-Pop idol, colorful hair, stage lights, concert" },
+        { id: 22, name: "VOGUE Cover", prompt: "VOGUE magazine cover, fashion model pose" },
+        { id: 23, name: "Gym & Pack", prompt: "Muscular & pack transformation, gym background" },
+        { id: 24, name: "Disney", prompt: "Disney prince/princess, animated movie style" },
+        { id: 25, name: "GTA5", prompt: "GTA 5 game character poster, wasted poster style" },
+        { id: 26, name: "Dark Academia", prompt: "Dark academia aesthetic, books, moody lighting" },
+        { id: 27, name: "AI Family", prompt: "Future family photo, me with wife and 2 kids, happy" },
+        { id: 28, name: "LinkedIn", prompt: "Professional LinkedIn headshot, suit, office background" },
+        { id: 29, name: "Cyberpunk Passport", prompt: "Cyberpunk passport photo, neon lights" },
+        { id: 30, name: "Anime Villain", prompt: "Anime villain, red glowing eyes, dark background" },
+        { id: 31, name: "AI Couple", prompt: "Romantic couple photo with girlfriend, sunset beach" },
+        { id: 32, name: "AI Car", prompt: "Standing with Lamborghini, rich lifestyle, garage" },
+        { id: 33, name: "AI Travel", prompt: "Travel photo in Paris with Eiffel Tower background" },
+        { id: 34, name: "Pirate", prompt: "Pirate captain, ship, ocean storm background" },
+        { id: 35, name: "Astronaut", prompt: "Astronaut in space, earth background, NASA suit" },
+        { id: 36, name: "Samurai", prompt: "Japanese samurai warrior, katana, cherry blossoms" },
+        { id: 37, name: "Victorian", prompt: "Victorian royal dress, palace, royal look" },
+        { id: 38, name: "Neon", prompt: "Neon cyberpunk portrait, pink blue neon lights" },
+        { id: 39, name: "Watercolor", prompt: "Watercolor painting style, artistic, soft" },
+        { id: 40, name: "Pop Art", prompt: "Pop art comic book style, bold colors, halftone" },
+        { id: 41, name: "Zombie", prompt: "Zombie apocalypse survivor, dark, scary" },
+        { id: 42, name: "Wizard", prompt: "Harry Potter wizard, magic wand, Hogwarts" },
+        { id: 43, name: "Viking", prompt: "Viking warrior, axe, storm, epic" },
+        { id: 44, name: "CEO", prompt: "CEO in modern office, confident pose, glass window" },
+        { id: 45, name: "Doctor", prompt: "Doctor in hospital, stethoscope, professional" },
+        { id: 46, name: "Pilot", prompt: "Airline pilot uniform, cockpit background" },
+        { id: 47, name: "Chef", prompt: "Master chef in kitchen, cooking, professional" },
+        { id: 48, name: "Rockstar", prompt: "Rockstar on stage with guitar, crowd, lights" },
+        { id: 49, name: "AI Pet", prompt: "Photo with cute AI dog and cat, playful" },
+        { id: 50, name: "Festive", prompt: "Indian festival traditional dress, Diwali lights" }
+    ];
 
-    <!-- JAVASCRIPT FOR LOGIC -->
-    <script>
-        // Exactly 50 styles as requested
-        const styles = [
-            { id: 1, name: "Anime", prompt: "Transform into Studio Ghibli anime style, soft lighting, detailed" },
-            { id: 2, name: "3D Pixar", prompt: "Convert into 3D Pixar character, big eyes, cute, 3D render" },
-            { id: 3, name: "Cinematic Poster", prompt: "Cinematic movie poster, dramatic lighting, title at top" },
-            { id: 4, name: "Cyberpunk Gamer", prompt: "Cyberpunk style, RGB gaming setup background, neon" },
-            { id: 5, name: "God Look", prompt: "Divine god look, golden aura, glowing background, epic" },
-            { id: 6, name: "Rich Billionaire", prompt: "Billionaire look, black suit, Lamborghini, luxury" },
-            { id: 7, name: "AI Action Figure", prompt: "Toy action figure inside plastic box packaging" },
-            { id: 8, name: "Barbie/Ken", prompt: "Barbie doll style, pink dreamhouse background" },
-            { id: 9, name: "Lego", prompt: "Made completely of Lego blocks, toy photography" },
-            { id: 10, name: "Oil Painting", prompt: "Renaissance oil painting, museum quality, brush strokes" },
-            { id: 11, name: "Old Money", prompt: "1920s vintage black and white, luxury suit, old money" },
-            { id: 12, name: "90s Yearbook", prompt: "90s school yearbook photo, retro filter, grainy" },
-            { id: 13, name: "Marvel Hero", prompt: "Marvel superhero costume, city destruction background" },
-            { id: 14, name: "DBZ", prompt: "Dragon Ball Z character, energy aura, powering up" },
-            { id: 15, name: "Gaming Setup BG", prompt: "Change background to pro RGB gaming setup" },
-            { id: 16, name: "Beach BG", prompt: "Change background to Maldives beach, sunset, palm trees" },
-            { id: 17, name: "Royal Wedding", prompt: "Royal Indian wedding, sherwani, palace background" },
-            { id: 18, name: "AI Baby", prompt: "Cute 5 year old baby version of this person" },
-            { id: 19, name: "Glass Portrait", prompt: "Glass morphism effect, transparent, modern" },
-            { id: 20, name: "Tattoo", prompt: "Full sleeve realistic tattoo on arms, detailed" },
-            { id: 21, name: "K-Pop Idol", prompt: "K-Pop idol, colorful hair, stage lights, concert" },
-            { id: 22, name: "VOGUE Cover", prompt: "VOGUE magazine cover, fashion model pose" },
-            { id: 23, name: "Gym 6Pack", prompt: "Muscular 6 pack transformation, gym background" },
-            { id: 24, name: "Disney", prompt: "Disney prince/princess, animated movie style" },
-            { id: 25, name: "GTA5", prompt: "GTA 5 game character poster, wanted poster style" },
-            { id: 26, name: "Dark Academia", prompt: "Dark academia aesthetic, books, moody lighting" },
-            { id: 27, name: "AI Family", prompt: "Future family photo, me with wife and 2 kids, happy" },
-            { id: 28, name: "LinkedIn", prompt: "Professional LinkedIn headshot, suit, office background" },
-            { id: 29, name: "Cyberpunk Passport", prompt: "Cyberpunk passport photo, neon lights" },
-            { id: 30, name: "Anime Villain", prompt: "Anime villain, red glowing eyes, dark background" },
-            { id: 31, name: "AI Couple", prompt: "Romantic couple photo with girlfriend, sunset beach" },
-            { id: 32, name: "AI Car", prompt: "Standing with Lamborghini, rich lifestyle, garage" },
-            { id: 33, name: "AI Travel", prompt: "Travel photo in Paris with Eiffel Tower background" },
-            { id: 34, name: "Pirate", prompt: "Pirate captain, ship, ocean storm background" },
-            { id: 35, name: "Astronaut", prompt: "Astronaut in space, earth background, NASA suit" },
-            { id: 36, name: "Samurai", prompt: "Japanese samurai warrior, katana, cherry blossoms" },
-            { id: 37, name: "Victorian", prompt: "Victorian royal dress, palace, royal look" },
-            { id: 38, name: "Neon", prompt: "Neon cyberpunk portrait, pink blue neon lights" },
-            { id: 39, name: "Watercolor", prompt: "Watercolor painting style, artistic, soft" },
-            { id: 40, name: "Pop Art", prompt: "Pop art comic book style, bold colors, halftone" },
-            { id: 41, name: "Zombie", prompt: "Zombie apocalypse survivor, dark, scary" },
-            { id: 42, name: "Wizard", prompt: "Harry Potter wizard, magic wand, Hogwarts" },
-            { id: 43, name: "Viking", prompt: "Viking warrior, axe, storm, epic" },
-            { id: 44, name: "CEO", prompt: "CEO in modern office, confident pose, glass window" },
-            { id: 45, name: "Doctor", prompt: "Doctor in hospital, stethoscope, professional" },
-            { id: 46, name: "Pilot", prompt: "Airline pilot uniform, cockpit background" },
-            { id: 47, name: "Chef", prompt: "Master chef in kitchen, cooking, professional" },
-            { id: 48, name: "Rockstar", prompt: "Rockstar on stage with guitar, crowd, lights" },
-            { id: 49, name: "AI Pet", prompt: "Photo with cute AI dog and cat, playful" },
-            { id: 50, name: "Festive", prompt: "Indian festival traditional dress, Diwali lights" }
-        ];
-
-        // Generate 50 Grid Cards dynamically
-        const grid = document.getElementById('styles-grid');
+    // Generate 50 Grid Cards dynamically
+    const grid = document.getElementById('styles-grid');
+    if (grid) {
+        grid.innerHTML = ''; // Clear old broken stuff
         styles.forEach(style => {
             const card = document.createElement('div');
-            card.className = "bg-[#111] border border-gray-800 rounded-xl p-3 flex flex-col justify-between text-center hover:border-[#a855f7] transition-all";
+            card.className = "bg-[#111] border border-gray-800 rounded-xl p-3 flex flex-col justify-between text-center hover:border-[#00ff88] transition-all duration-300";
             card.innerHTML = `
-                <div class="h-24 bg-gray-800 rounded-lg mb-2 flex items-center justify-center text-xs text-gray-500">[Preview Image]</div>
+                <div class="h-24 bg-gray-800 rounded-lg mb-2 flex items-center justify-center text-xs text-gray-500">[ Preview ]</div>
                 <h3 class="font-semibold text-sm mb-2 text-gray-200">${style.name}</h3>
-                <button onclick="selectStyle('${style.prompt}')" class="w-full text-xs bg-gray-900 border border-gray-700 hover:border-[#00ff88] py-1.5 rounded-md transition-all">Use This Style</button>
+                <button onclick="selectStyle('${style.prompt}')" class="w-full text-xs bg-gray-900 border border-gray-700 py-1 rounded hover:bg-black text-gray-300">Try Style</button>
             `;
             grid.appendChild(card);
         });
-
-        // Click handler to select style and scroll
-        function selectStyle(prompt) {
-            document.getElementById('prompt-box').value = prompt;
-            document.getElementById('photo-tool').scrollIntoView({ behavior: 'smooth' });
-        }
-// Drag & Drop और File Selection हैंडलर
-const dropZone = document.querySelector('.border-dashed');
-const fileInput = document.createElement('input');
-fileInput.type = 'file';
-fileInput.accept = 'image/*';
-
-if (dropZone) {
-    dropZone.addEventListener('click', () => fileInput.click());
-    
-    dropZone.addEventListener('dragover', (e) => {
-        e.preventDefault();
-        dropZone.classList.add('border-[#00ff88]');
-    });
-
-    dropZone.addEventListener('dragleave', () => {
-        dropZone.classList.remove('border-[#00ff88]');
-    });
-
-    dropZone.addEventListener('drop', (e) => {
-        e.preventDefault();
-        dropZone.classList.remove('border-[#00ff88]');
-        if (e.dataTransfer.files.length > 0) {
-            handleFile(e.dataTransfer.files[0]);
-        }
-    });
-}
-
-fileInput.addEventListener('change', (e) => {
-    if (e.target.files.length > 0) {
-        handleFile(e.target.files[0]);
-    }
-});
-
-let selectedFile = null;
-function handleFile(file) {
-    selectedFile = file;
-    const pText = dropZone.querySelector('p');
-    if (pText) {
-        pText.innerHTML = `Selected: <span class="text-[#00ff88] font-bold">${file.name}</span>`;
-    }
-}
-
-// AI फोटो जेनरेट करने का असली फंक्शन (अपडेटेड वर्जन)
-async function generateImage() {
-    if (!selectedFile) {
-        alert("Bhai, pehle ek photo select ya drag-drop karo!");
-        return;
     }
 
-    const creditCountEl = document.getElementById('credit-count');
-    if (credits < 2) {
-        alert("Bhai, credits khatam ho gaye hain!");
-        return;
+    // Click handler to select style and scroll
+    function selectStyle(prompt) {
+        const promptBox = document.getElementById('prompt-box');
+        const photoTool = document.getElementById('photo-tool');
+        if (promptBox) promptBox.value = prompt;
+        if (photoTool) photoTool.scrollIntoView({ behavior: 'smooth' });
     }
 
-    // बटन को लोडिंग स्टेट में डालना
-    const genBtn = document.querySelector("button[onclick='generateImage()']");
-    const originalText = genBtn.innerText;
-    genBtn.innerText = "Generating Magic... ✨";
-    genBtn.disabled = true;
+    // Credits aur Upload logic
+    let credits = 10;
+    let selectedFile = null;
 
-    try {
-        const formData = new FormData();
-        formData.append('image', selectedFile);
+    const dropZone = document.querySelector('.border-dashed');
+    const fileInput = document.createElement('input');
+    fileInput.type = 'file';
+    fileInput.accept = 'image/*';
 
-        // ImgBB पर इमेज अपलोड करना (फ्री API)
-        const uploadRes = await fetch('https://api.imgbb.com/1/upload?key=const uploadRes = await fetch('https://api.imgbb.com/1/upload?key=badb5e4313fc5e28a92abd494f5babc7', {
-                              ', {
-            method: 'POST',
-            body: formData
+    if (dropZone) {
+        dropZone.addEventListener('click', () => fileInput.click());
+        
+        dropZone.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            dropZone.classList.add('border-[#00ff88]');
         });
-        
-        const uploadData = await uploadRes.json();
-        
-        if (uploadData.success) {
-            alert("Photo Uploaded Successfully! Sending to AI Studio...");
-            
-            // क्रेडिट कम करना
-            credits -= 2;
-            if (creditCountEl) creditCountEl.innerText = credits;
-            
-            alert("Magic Photo Generated!");
-        } else {
-            alert("Upload failed! Server busy.");
-        }
-    } catch (error) {
-        alert("Internet connection check karo bhai!");
-    } finally {
-        genBtn.innerText = originalText;
-        genBtn.disabled = false;
+
+        dropZone.addEventListener('dragleave', () => {
+            dropZone.classList.remove('border-[#00ff88]');
+        });
+
+        dropZone.addEventListener('drop', (e) => {
+            e.preventDefault();
+            dropZone.classList.remove('border-[#00ff88]');
+            if (e.dataTransfer.files.length > 0) {
+                handleFile(e.dataTransfer.files[0]);
+            }
+        });
     }
-                                                                       }
-        
-        
+
+    fileInput.addEventListener('change', (e) => {
+        if (e.target.files.length > 0) {
+            handleFile(e.target.files[0]);
+        }
+    });
+
+    function handleFile(file) {
+        selectedFile = file;
+        const pText = dropZone.querySelector('p');
+        if (pText) {
+            pText.innerHTML = `Selected: <span class="text-[#00ff88] font-bold">${file.name}</span>`;
+        }
+    }
+
+    // AI फोटो जेनरेट करने का असली फंक्शन
+    async function generateImage() {
+        if (!selectedFile) {
+            alert("Bhai, pehle ek photo select ya drag-drop karo!");
+            return;
+        }
+
+        const creditCountEl = document.getElementById('credit-count');
+        if (credits < 2) {
+            alert("Bhai, credits khatam ho gaye hain!");
+            return;
+        }
+
+        const genBtn = document.querySelector("button[onclick='generateImage()']");
+        const originalText = genBtn.innerText;
+        genBtn.innerText = "Generating Magic... ✨";
+        genBtn.disabled = true;
+
+        try {
+            const formData = new FormData();
+            formData.append('image', selectedFile);
+
+            const uploadRes = await fetch('https://api.imgbb.com/1/upload?key=badb5e4313fc5e28a92abd494f5babc7', {
+                method: 'POST',
+                body: formData
+            });
+            
+            const uploadData = await uploadRes.json();
+            
+            if (uploadData.success) {
+                alert("Photo Uploaded Successfully! Sending to AI Studio...");
+                credits -= 2;
+                if (creditCountEl) creditCountEl.innerText = credits;
+                alert("Magic Photo Generated!");
+            } else {
+                alert("Upload failed! Server busy.");
+            }
+        } catch (error) {
+            alert("Internet connection check karo bhai!");
+        } finally {
+            genBtn.innerText = originalText;
+            genBtn.disabled = false;
+        }
+    }
+</script>
+
+    
         }
     </script>
 </body>
