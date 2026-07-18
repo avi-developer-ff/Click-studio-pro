@@ -152,17 +152,99 @@
             document.getElementById('prompt-box').value = prompt;
             document.getElementById('photo-tool').scrollIntoView({ behavior: 'smooth' });
         }
+// Drag & Drop और File Selection हैंडलर
+const dropZone = document.querySelector('.border-dashed');
+const fileInput = document.createElement('input');
+fileInput.type = 'file';
+fileInput.accept = 'image/*';
 
-        // Credits handling logic
-        let credits = 10;
-        function generateImage() {
-            if (credits < 2) {
-                alert("Credits khatam! Recharge karo ❌");
-                return;
-            }
+if (dropZone) {
+    dropZone.addEventListener('click', () => fileInput.click());
+    
+    dropZone.addEventListener('dragover', (e) => {
+        e.preventDefault();
+        dropZone.classList.add('border-[#00ff88]');
+    });
+
+    dropZone.addEventListener('dragleave', () => {
+        dropZone.classList.remove('border-[#00ff88]');
+    });
+
+    dropZone.addEventListener('drop', (e) => {
+        e.preventDefault();
+        dropZone.classList.remove('border-[#00ff88]');
+        if (e.dataTransfer.files.length > 0) {
+            handleFile(e.dataTransfer.files[0]);
+        }
+    });
+}
+
+fileInput.addEventListener('change', (e) => {
+    if (e.target.files.length > 0) {
+        handleFile(e.target.files[0]);
+    }
+});
+
+let selectedFile = null;
+function handleFile(file) {
+    selectedFile = file;
+    const pText = dropZone.querySelector('p');
+    if (pText) {
+        pText.innerHTML = `Selected: <span class="text-[#00ff88] font-bold">${file.name}</span>`;
+    }
+}
+
+// AI फोटो जेनरेट करने का असली फंक्शन (अपडेटेड वर्जन)
+async function generateImage() {
+    if (!selectedFile) {
+        alert("Bhai, pehle ek photo select ya drag-drop karo!");
+        return;
+    }
+
+    const creditCountEl = document.getElementById('credit-count');
+    if (credits < 2) {
+        alert("Bhai, credits khatam ho gaye hain!");
+        return;
+    }
+
+    // बटन को लोडिंग स्टेट में डालना
+    const genBtn = document.querySelector("button[onclick='generateImage()']");
+    const originalText = genBtn.innerText;
+    genBtn.innerText = "Generating Magic... ✨";
+    genBtn.disabled = true;
+
+    try {
+        const formData = new FormData();
+        formData.append('image', selectedFile);
+
+        // ImgBB पर इमेज अपलोड करना (फ्री API)
+        const uploadRes = await fetch('https://api.imgbb.com/1/upload?key=YOUR_FREE_IMGBB_API_KEY_HERE', {
+            method: 'POST',
+            body: formData
+        });
+        
+        const uploadData = await uploadRes.json();
+        
+        if (uploadData.success) {
+            alert("Photo Uploaded Successfully! Sending to AI Studio...");
+            
+            // क्रेडिट कम करना
             credits -= 2;
-            document.getElementById('credit-count').innerText = credits;
-            alert("AI Generating... Magic is happening ✨ (2 Credits deducted)");
+            if (creditCountEl) creditCountEl.innerText = credits;
+            
+            alert("Magic Photo Generated!");
+        } else {
+            alert("Upload failed! Server busy.");
+        }
+    } catch (error) {
+        alert("Internet connection check karo bhai!");
+    } finally {
+        genBtn.innerText = originalText;
+        genBtn.disabled = false;
+    }
+                                                                       }
+        
+        
         }
     </script>
 </body>
