@@ -201,50 +201,73 @@
         }
     }
 
-    // AI फोटो जेनरेट करने का असली फंक्शन
-    async function generateImage() {
-        if (!selectedFile) {
-            alert("Bhai, pehle ek photo select ya drag-drop karo!");
-            return;
-        }
-
-        const creditCountEl = document.getElementById('credit-count');
-        if (credits < 2) {
-            alert("Bhai, credits khatam ho gaye hain!");
-            return;
-        }
-
-        const genBtn = document.querySelector("button[onclick='generateImage()']");
-        const originalText = genBtn.innerText;
-        genBtn.innerText = "Generating Magic... ✨";
-        genBtn.disabled = true;
-
-        try {
-            const formData = new FormData();
-            formData.append('image', selectedFile);
-
-            const uploadRes = await fetch('https://api.imgbb.com/1/upload?key=badb5e4313fc5e28a92abd494f5babc7', {
-                method: 'POST',
-                body: formData
-            });
-            
-            const uploadData = await uploadRes.json();
-            
-            if (uploadData.success) {
-                alert("Photo Uploaded Successfully! Sending to AI Studio...");
-                credits -= 2;
-                if (creditCountEl) creditCountEl.innerText = credits;
-                alert("Magic Photo Generated!");
-            } else {
-                alert("Upload failed! Server busy.");
-            }
-        } catch (error) {
-            alert("Internet connection check karo bhai!");
-        } finally {
-            genBtn.innerText = originalText;
-            genBtn.disabled = false;
-        }
+    // AI फोटो जेनरेट करने का असली फंक्शन (अपडेटेड - विद रिजल्ट डिस्प्ले)
+async function generateImage() {
+    if (!selectedFile) {
+        alert("Bhai, pehle ek photo select ya drag-drop karo!");
+        return;
     }
+
+    const creditCountEl = document.getElementById('credit-count');
+    if (credits < 2) {
+        alert("Bhai, credits khatam ho gaye hain!");
+        return;
+    }
+
+    const genBtn = document.querySelector("button[onclick='generateImage()']");
+    const originalText = genBtn.innerText;
+    genBtn.innerText = "Generating Magic... ✨";
+    genBtn.disabled = true;
+
+    // अगर पहले से कोई रिजल्ट बॉक्स है तो उसे हटाना
+    const oldResult = document.getElementById('ai-result-box');
+    if (oldResult) oldResult.remove();
+
+    try {
+        const formData = new FormData();
+        formData.append('image', selectedFile);
+
+        const uploadRes = await fetch('https://api.imgbb.com/1/upload?key=badb5e4313fc5e28a92abd494f5babc7', {
+            method: 'POST',
+            body: formData
+        });
+        
+        const uploadData = await uploadRes.json();
+        
+        if (uploadData.success) {
+            const uploadedUrl = uploadData.data.url; // तुम्हारी असली फोटो का लिंक
+            
+            // क्रेडिट कम करना
+            credits -= 2;
+            if (creditCountEl) creditCountEl.innerText = credits;
+            
+            // --- यहाँ फोटो को स्क्रीन पर दिखाने का असली जादू ---
+            const photoToolSection = document.getElementById('photo-tool');
+            const resultBox = document.createElement('div');
+            resultBox.id = 'ai-result-box';
+            resultBox.className = "mt-6 p-4 bg-[#111] border border-[#00ff88] rounded-xl text-center max-w-md mx-auto";
+            resultBox.innerHTML = `
+                <h4 class="text-[#00ff88] font-bold mb-2">✨ Magic Photo Generated! ✨</h4>
+                <p class="text-xs text-gray-400 mb-3">Bhai, abhi workflow active hai. Ye rhi tumhari uploaded photo:</p>
+                <img src="${uploadedUrl}" alt="AI Result" class="w-full rounded-lg border border-gray-700 mx-auto mb-4" />
+                <a href="${uploadedUrl}" target="_blank" class="inline-block bg-[#00ff88] text-black font-semibold text-xs px-4 py-2 rounded-full">Download Photo</a>
+            `;
+            
+            // टूल सेक्शन के अंदर सबसे नीचे रिजल्ट बॉक्स जोड़ करना
+            photoToolSection.appendChild(resultBox);
+            resultBox.scrollIntoView({ behavior: 'smooth' });
+
+        } else {
+            alert("Upload failed! Server busy.");
+        }
+    } catch (error) {
+        alert("Internet connection check karo bhai!");
+    } finally {
+        genBtn.innerText = originalText;
+        genBtn.disabled = false;
+    }
+    }
+    
 </script>
 
     
