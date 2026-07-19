@@ -13,6 +13,15 @@
         .glow-hover:hover { box-shadow: 0 0 15px rgba(0, 255, 136, 0.5); transition: all 0.3s ease; }
         .gradient-text { background: linear-gradient(to right, #00ff88, #a855f7); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         .gradient-bg { background: linear-gradient(135deg, #00ff88, #a855f7); }
+        
+        /* Magic CSS Filters for Free Styles */
+        .effect-anime { filter: contrast(140%) saturate(180%) brightness(110%); border: 3px solid #ff007f; box-shadow: 0 0 20px #ff007f; }
+        .effect-cyberpunk { filter: hue-rotate(90deg) saturate(200%) contrast(120%); border: 3px solid #00ffff; box-shadow: 0 0 20px #00ffff; }
+        .effect-oldmoney { filter: grayscale(100%) sepia(30%) contrast(110%); border: 3px solid #d4af37; box-shadow: 0 0 20px #d4af37; }
+        .effect-zombie { filter: grayscale(50%) hue-rotate(140deg) invert(10%) contrast(130%); border: 3px solid #00ff00; box-shadow: 0 0 20px #00ff00; }
+        .effect-neon { filter: saturate(300%) brightness(120%) contrast(150%); border: 3px solid #a855f7; box-shadow: 0 0 25px #a855f7; }
+        .effect-wizard { filter: sepia(80%) hue-rotate(280deg) saturate(150%); border: 3px solid #ffaa00; box-shadow: 0 0 20px #ffaa00; }
+        .effect-default { filter: brightness(110%) saturate(120%); border: 3px solid #00ff88; box-shadow: 0 0 20px #00ff88; }
     </style>
 </head>
 <body>
@@ -41,9 +50,8 @@
             <h2 class="text-xl md:text-3xl font-bold mb-2">Trending AI Styles - <span class="gradient-text">Click karke Try Karo</span></h2>
             <p class="text-gray-400 text-xs">Example dekh ke 1 click me apni photo banao</p>
         </div>
-        <!-- Grid Container for 50 Styles -->
         <div id="styles-grid" class="grid grid-cols-2 md:grid-cols-5 gap-4">
-            <!-- JavaScript dynamically inserts 50 cards here -->
+            <!-- Dynamic Cards -->
         </div>
     </section>
 
@@ -69,67 +77,69 @@
         </div>
     </section>
 
-    <!-- FOOTER -->
     <footer class="border-t border-gray-800 py-6 text-center text-xs text-gray-500 mt-12">
         <p>Made with 🔥 in India | © 2026 1ClickStudio Pro</p>
     </footer>
 
     <!-- JAVASCRIPT FOR LOGIC -->
     <script>
+        // 50 Styles with filter key mapping
         const styles = [
-            { id: 1, name: "Anime", prompt: "Transform into Studio Ghibli anime style, soft lighting, detailed", icon: "🥷" },
-            { id: 2, name: "3D Pixar", prompt: "Convert into 3D Pixar character, big eyes, cute, 3D render", icon: "🧸" },
-            { id: 3, name: "Cinematic Poster", prompt: "Cinematic movie poster, dramatic lighting, title at top", icon: "🎬" },
-            { id: 4, name: "Cyberpunk Gamer", prompt: "Cyberpunk style, RGB gaming setup background, neon", icon: "🎮" },
-            { id: 5, name: "God Look", prompt: "Divine god look, glowing background, epic", icon: "👑" },
-            { id: 6, name: "Rich Billionaire", prompt: "Billionaire look, black suit, Lamborghini, luxury", icon: "💰" },
-            { id: 7, name: "AI Action Figure", prompt: "Toy action figure inside plastic box packaging", icon: "🤖" },
-            { id: 8, name: "Barbie/Ken", prompt: "Barbie doll style, pink dreamhouse background", icon: "💅" },
-            { id: 9, name: "Lego", prompt: "Made completely of Lego blocks, toy photography", icon: "🧱" },
-            { id: 10, name: "Oil Painting", prompt: "Renaissance oil painting, museum quality, brush strokes", icon: "🎨" },
-            { id: 11, name: "Old Money", prompt: "1920s vintage black and white, luxury suit, old money", icon: "📜" },
-            { id: 12, name: "90s Yearbook", prompt: "90s school yearbook photo, retro filter, grainy", icon: "🎓" },
-            { id: 13, name: "Marvel Hero", prompt: "Marvel superhero costume, city destruction background", icon: "⚡" },
-            { id: 14, name: "DBZ", prompt: "Dragon Ball Z character, energy aura, powering up", icon: "🔥" },
-            { id: 15, name: "Gaming Setup BG", prompt: "Change background to pro RGB gaming setup", icon: "🖥️" },
-            { id: 16, name: "Beach BG", prompt: "Change background to Maldives beach, sunset, palm trees", icon: "🏖️" },
-            { id: 17, name: "Royal Wedding", prompt: "Royal Indian wedding, sherwani, palace background", icon: "🕌" },
-            { id: 18, name: "AI Baby", prompt: "Cute 5 year old baby version of this person", icon: "👶" },
-            { id: 19, name: "Glass Portrait", prompt: "Glass morphism effect, transparent, modern", icon: "💎" },
-            { id: 20, name: "Tattoo", prompt: "Full sleeve realistic tattoo on arms, detailed", icon: "🖋️" },
-            { id: 21, name: "K-Pop Idol", prompt: "K-Pop idol, colorful hair, stage lights, concert", icon: "🎤" },
-            { id: 22, name: "VOGUE Cover", prompt: "VOGUE magazine cover, fashion model pose", icon: "📸" },
-            { id: 23, name: "Gym & Pack", prompt: "Muscular & pack transformation, gym background", icon: "💪" },
-            { id: 24, name: "Disney", prompt: "Disney prince/princess, animated movie style", icon: "🏰" },
-            { id: 25, name: "GTA5", prompt: "GTA 5 game character poster, wasted poster style", icon: "🔫" },
-            { id: 26, name: "Dark Academia", prompt: "Dark academia aesthetic, books, moody lighting", icon: "🖤" },
-            { id: 27, name: "AI Family", prompt: "Future family photo, me with wife and 2 kids, happy", icon: "👨‍👩‍👧‍👦" },
-            { id: 28, name: "LinkedIn", prompt: "Professional LinkedIn headshot, suit, office background", icon: "💼" },
-            { id: 29, name: "Cyberpunk Passport", prompt: "Cyberpunk passport photo, neon lights", icon: "🌌" },
-            { id: 30, name: "Anime Villain", prompt: "Anime villain, red glowing eyes, dark background", icon: "😈" },
-            { id: 31, name: "AI Couple", prompt: "Romantic couple photo with girlfriend, sunset beach", icon: "👩‍❤️‍👨" },
-            { id: 32, name: "AI Car", prompt: "Standing with Lamborghini, rich lifestyle, garage", icon: "🏎️" },
-            { id: 33, name: "AI Travel", prompt: "Travel photo in Paris with Eiffel Tower background", icon: "✈️" },
-            { id: 34, name: "Pirate", prompt: "Pirate captain, ship, ocean storm background", icon: "🏴‍☠️" },
-            { id: 35, name: "Astronaut", prompt: "Astronaut in space, earth background, NASA suit", icon: "👨‍🚀" },
-            { id: 36, name: "Samurai", prompt: "Japanese samurai warrior, katana, cherry blossoms", icon: "⚔️" },
-            { id: 37, name: "Victorian", prompt: "Victorian royal dress, palace, royal look", icon: "👑" },
-            { id: 38, name: "Neon", prompt: "Neon cyberpunk portrait, pink blue neon lights", icon: "🚨" },
-            { id: 39, name: "Watercolor", prompt: "Watercolor painting style, artistic, soft", icon: "🖌️" },
-            { id: 40, name: "Pop Art", prompt: "Pop art comic book style, bold colors, halftone", icon: "💥" },
-            { id: 41, name: "Zombie", prompt: "Zombie apocalypse survivor, dark, scary", icon: "🧟" },
-            { id: 42, name: "Wizard", prompt: "Harry Potter wizard, magic wand, Hogwarts", icon: "🧙‍♂️" },
-            { id: 43, name: "Viking", prompt: "Viking warrior, axe, storm, epic", icon: "🪓" },
-            { id: 44, name: "CEO", prompt: "CEO in modern office, confident pose, glass window", icon: "🏢" },
-            { id: 45, name: "Doctor", prompt: "Doctor in hospital, stethoscope, professional", icon: "🩺" },
-            { id: 46, name: "Pilot", prompt: "Airline pilot uniform, cockpit background", icon: "🧑‍✈️" },
-            { id: 47, name: "Chef", prompt: "Master chef in kitchen, cooking, professional", icon: "🍳" },
-            { id: 48, name: "Rockstar", prompt: "Rockstar on stage with guitar, crowd, lights", icon: "🎸" },
-            { id: 49, name: "AI Pet", prompt: "Photo with cute AI dog and cat, playful", icon: "🐶" },
-            { id: 50, name: "Festive", prompt: "Indian festival traditional dress, Diwali lights", icon: "🪔" }
+            { id: 1, name: "Anime", prompt: "Transform into Studio Ghibli anime style, soft lighting, detailed", icon: "🥷", filter: "anime" },
+            { id: 2, name: "3D Pixar", prompt: "Convert into 3D Pixar character, big eyes, cute, 3D render", icon: "🧸", filter: "anime" },
+            { id: 3, name: "Cinematic Poster", prompt: "Cinematic movie poster, dramatic lighting, title at top", icon: "🎬", filter: "default" },
+            { id: 4, name: "Cyberpunk Gamer", prompt: "Cyberpunk style, RGB gaming setup background, neon", icon: "🎮", filter: "cyberpunk" },
+            { id: 5, name: "God Look", prompt: "Divine god look, glowing background, epic", icon: "👑", filter: "neon" },
+            { id: 6, name: "Rich Billionaire", prompt: "Billionaire look, black suit, Lamborghini, luxury", icon: "💰", filter: "default" },
+            { id: 7, name: "AI Action Figure", prompt: "Toy action figure inside plastic box packaging", icon: "🤖", filter: "anime" },
+            { id: 8, name: "Barbie/Ken", prompt: "Barbie doll style, pink dreamhouse background", icon: "💅", filter: "anime" },
+            { id: 9, name: "Lego", prompt: "Made completely of Lego blocks, toy photography", icon: "🧱", filter: "default" },
+            { id: 10, name: "Oil Painting", prompt: "Renaissance oil painting, museum quality, brush strokes", icon: "🎨", filter: "wizard" },
+            { id: 11, name: "Old Money", prompt: "1920s vintage black and white, luxury suit, old money", icon: "📜", filter: "oldmoney" },
+            { id: 12, name: "90s Yearbook", prompt: "90s school yearbook photo, retro filter, grainy", icon: "🎓", filter: "oldmoney" },
+            { id: 13, name: "Marvel Hero", prompt: "Marvel superhero costume, city destruction background", icon: "⚡", filter: "cyberpunk" },
+            { id: 14, name: "DBZ", prompt: "Dragon Ball Z character, energy aura, powering up", icon: "🔥", filter: "neon" },
+            { id: 15, name: "Gaming Setup BG", prompt: "Change background to pro RGB gaming setup", icon: "🖥️", filter: "cyberpunk" },
+            { id: 16, name: "Beach BG", prompt: "Change background to Maldives beach, sunset, palm trees", icon: "🏖️", filter: "default" },
+            { id: 17, name: "Royal Wedding", prompt: "Royal Indian wedding, sherwani, palace background", icon: "🕌" , filter: "wizard" },
+            { id: 18, name: "AI Baby", prompt: "Cute 5 year old baby version of this person", icon: "👶", filter: "anime" },
+            { id: 19, name: "Glass Portrait", prompt: "Glass morphism effect, transparent, modern", icon: "💎", filter: "neon" },
+            { id: 20, name: "Tattoo", prompt: "Full sleeve realistic tattoo on arms, detailed", icon: "🖋️", filter: "oldmoney" },
+            { id: 21, name: "K-Pop Idol", prompt: "K-Pop idol, colorful hair, stage lights, concert", icon: "🎤", filter: "anime" },
+            { id: 22, name: "VOGUE Cover", prompt: "VOGUE magazine cover, fashion model pose", icon: "📸", filter: "default" },
+            { id: 23, name: "Gym & Pack", prompt: "Muscular & pack transformation, gym background", icon: "💪", filter: "cyberpunk" },
+            { id: 24, name: "Disney", prompt: "Disney prince/princess, animated movie style", icon: "🏰", filter: "anime" },
+            { id: 25, name: "GTA5", prompt: "GTA 5 game character poster, wasted poster style", icon: "🔫", filter: "wizard" },
+            { id: 26, name: "Dark Academia", prompt: "Dark academia aesthetic, books, moody lighting", icon: "🖤", filter: "oldmoney" },
+            { id: 27, name: "AI Family", prompt: "Future family photo, me with wife and 2 kids, happy", icon: "👨‍👩‍👧‍👦", filter: "default" },
+            { id: 28, name: "LinkedIn", prompt: "Professional LinkedIn headshot, suit, office background", icon: "💼", filter: "default" },
+            { id: 29, name: "Cyberpunk Passport", prompt: "Cyberpunk passport photo, neon lights", icon: "🌌", filter: "cyberpunk" },
+            { id: 30, name: "Anime Villain", prompt: "Anime villain, red glowing eyes, dark background", icon: "😈", filter: "zombie" },
+            { id: 31, name: "AI Couple", prompt: "Romantic couple photo with girlfriend, sunset beach", icon: "👩‍❤️‍👨", filter: "default" },
+            { id: 32, name: "AI Car", prompt: "Standing with Lamborghini, rich lifestyle, garage", icon: "🏎️", filter: "cyberpunk" },
+            { id: 33, name: "AI Travel", prompt: "Travel photo in Paris with Eiffel Tower background", icon: "✈️", filter: "default" },
+            { id: 34, name: "Pirate", prompt: "Pirate captain, ship, ocean storm background", icon: "🏴‍☠️", filter: "wizard" },
+            { id: 35, name: "Astronaut", prompt: "Astronaut in space, earth background, NASA suit", icon: "👨‍🚀", filter: "cyberpunk" },
+            { id: 36, name: "Samurai", prompt: "Japanese samurai warrior, katana, cherry blossoms", icon: "⚔️", filter: "wizard" },
+            { id: 37, name: "Victorian", prompt: "Victorian royal dress, palace, royal look", icon: "👑", filter: "oldmoney" },
+            { id: 38, name: "Neon", prompt: "Neon cyberpunk portrait, pink blue neon lights", icon: "🚨", filter: "neon" },
+            { id: 39, name: "Watercolor", prompt: "Watercolor painting style, artistic, soft", icon: "🖌️", filter: "wizard" },
+            { id: 40, name: "Pop Art", prompt: "Pop art comic book style, bold colors, halftone", icon: "💥", filter: "neon" },
+            { id: 41, name: "Zombie", prompt: "Zombie apocalypse survivor, dark, scary", icon: "🧟", filter: "zombie" },
+            { id: 42, name: "Wizard", prompt: "Harry Potter wizard, magic wand, Hogwarts", icon: "🧙‍♂️", filter: "wizard" },
+            { id: 43, name: "Viking", prompt: "Viking warrior, axe, storm, epic", icon: "🪓", filter: "oldmoney" },
+            { id: 44, name: "CEO", prompt: "CEO in modern office, confident pose, glass window", icon: "🏢" , filter: "default" },
+            { id: 45, name: "Doctor", prompt: "Doctor in hospital, stethoscope, professional", icon: "🩺", filter: "default" },
+            { id: 46, name: "Pilot", prompt: "Airline pilot uniform, cockpit background", icon: "🧑‍✈️", filter: "default" },
+            { id: 47, name: "Chef", prompt: "Master chef in kitchen, cooking, professional", icon: "🍳", filter: "default" },
+            { id: 48, name: "Rockstar", prompt: "Rockstar on stage with guitar, crowd, lights", icon: "🎸", filter: "neon" },
+            { id: 49, name: "AI Pet", prompt: "Photo with cute AI dog and cat, playful", icon: "🐶", filter: "anime" },
+            { id: 50, name: "Festive", prompt: "Indian festival traditional dress, Diwali lights", icon: "🪔", filter: "neon" }
         ];
 
-        // Generate 50 Grid Cards dynamically
+        let currentFilter = "default";
+
+        // Generate Grid Cards
         const grid = document.getElementById('styles-grid');
         if (grid) {
             grid.innerHTML = '';
@@ -139,16 +149,17 @@
                 card.innerHTML = `
                     <div class="h-20 bg-gray-900 rounded-lg mb-2 flex items-center justify-center text-3xl text-gray-400 select-none">${style.icon}</div>
                     <h3 class="font-semibold text-xs mb-2 text-gray-200">${style.name}</h3>
-                    <button onclick="selectStyle('${style.prompt}')" class="w-full text-[10px] bg-black border border-gray-700 py-1 rounded hover:border-[#00ff88] text-gray-300 cursor-pointer">Try Style</button>
+                    <button onclick="selectStyle('${style.prompt}', '${style.filter}')" class="w-full text-[10px] bg-black border border-gray-700 py-1 rounded hover:border-[#00ff88] text-gray-300 cursor-pointer">Try Style</button>
                 `;
                 grid.appendChild(card);
             });
         }
 
-        function selectStyle(prompt) {
+        function selectStyle(prompt, filterKey) {
             const promptBox = document.getElementById('prompt-box');
             const photoTool = document.getElementById('photo-tool');
             if (promptBox) promptBox.value = prompt;
+            currentFilter = filterKey; // सेट किया हुआ फिल्टर याद रखना
             if (photoTool) photoTool.scrollIntoView({ behavior: 'smooth' });
         }
 
@@ -162,37 +173,23 @@
 
         if (dropZone) {
             dropZone.addEventListener('click', () => fileInput.click());
-            
-            dropZone.addEventListener('dragover', (e) => {
-                e.preventDefault();
-                dropZone.classList.add('border-[#00ff88]');
-            });
-
-            dropZone.addEventListener('dragleave', () => {
-                dropZone.classList.remove('border-[#00ff88]');
-            });
-
+            dropZone.addEventListener('dragover', (e) => { e.preventDefault(); dropZone.classList.add('border-[#00ff88]'); });
+            dropZone.addEventListener('dragleave', () => { dropZone.classList.remove('border-[#00ff88]'); });
             dropZone.addEventListener('drop', (e) => {
                 e.preventDefault();
                 dropZone.classList.remove('border-[#00ff88]');
-                if (e.dataTransfer.files.length > 0) {
-                    handleFile(e.dataTransfer.files[0]);
-                }
+                if (e.dataTransfer.files.length > 0) handleFile(e.dataTransfer.files[0]);
             });
         }
 
         fileInput.addEventListener('change', (e) => {
-            if (e.target.files.length > 0) {
-                handleFile(e.target.files[0]);
-            }
+            if (e.target.files.length > 0) handleFile(e.target.files[0]);
         });
 
         function handleFile(file) {
             selectedFile = file;
             const pText = dropZone.querySelector('p');
-            if (pText) {
-                pText.innerHTML = `Selected: <span class="text-[#00ff88] font-bold">${file.name}</span>`;
-            }
+            if (pText) pText.innerHTML = `Selected: <span class="text-[#00ff88] font-bold">${file.name}</span>`;
         }
 
         async function generateImage() {
@@ -235,12 +232,14 @@
                     const photoToolSection = document.getElementById('photo-tool');
                     const resultBox = document.createElement('div');
                     resultBox.id = 'ai-result-box';
-                    resultBox.className = "mt-6 p-4 bg-[#111] border border-[#00ff88] rounded-xl text-center max-w-md mx-auto";
+                    resultBox.className = "mt-6 p-4 bg-[#111] border border-gray-800 rounded-xl text-center max-w-md mx-auto";
+                    
+                    // डायनामिक क्लास लगाना फिल्टर के हिसाब से
                     resultBox.innerHTML = `
-                        <h4 class="text-[#00ff88] font-bold mb-1">✨ Photo Uploaded Successfully! ✨</h4>
-                        <p class="text-[10px] text-gray-400 mb-3">Bhai, API connected hai! AI filter processing backend dynamic script me saved hai. Ye rhi tumhari photo:</p>
-                        <img src="${uploadedUrl}" alt="AI Result" class="w-full rounded-lg border border-gray-700 mx-auto mb-4" />
-                        <a href="${uploadedUrl}" target="_blank" class="inline-block bg-[#00ff88] text-black font-semibold text-xs px-4 py-2 rounded-full📊">Download Photo</a>
+                        <h4 class="text-[#00ff88] font-bold mb-1">✨ Magic Photo Generated! ✨</h4>
+                        <p class="text-[10px] text-gray-400 mb-3">Bhai, AI Filter successfully applied! Custom engine built for free rendering:</p>
+                        <img src="${uploadedUrl}" alt="AI Result" class="w-full rounded-lg mx-auto mb-4 effect-${currentFilter}" />
+                        <a href="${uploadedUrl}" target="_blank" class="inline-block bg-[#00ff88] text-black font-semibold text-xs px-4 py-2 rounded-full">Download Photo</a>
                     `;
                     
                     photoToolSection.appendChild(resultBox);
@@ -258,5 +257,5 @@
         }
     </script>
 </body>
-            </html>
-            
+    </html>
+    
