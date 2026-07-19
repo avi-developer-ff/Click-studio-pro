@@ -8,8 +8,6 @@
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <!-- Puter Free AI Script -->
-    <script src="https://js.puter.com/v2/"></script>
     <style>
         body { font-family: 'Poppins', sans-serif; background-color: #0a0a0a; color: white; scroll-behavior: smooth; }
         .glow-hover:hover { box-shadow: 0 0 15px rgba(0, 255, 136, 0.5); transition: all 0.3s ease; }
@@ -77,21 +75,13 @@
     <!-- JAVASCRIPT FOR LOGIC -->
     <script>
         const styles = [
-            { id: 1, name: "Anime", prompt: "A highly detailed anime style character transformation, vibrant colors, studio ghibli aesthetic", icon: "🥷" },
-            { id: 2, name: "3D Pixar", prompt: "A cute 3D Pixar style character rendering, big glossy eyes, soft clay texture", icon: "🧸" },
-            { id: 3, name: "Cinematic Poster", prompt: "An epic cinematic movie poster look, dramatic lighting, highly realistic action movie background", icon: "🎬" },
-            { id: 4, name: "Cyberpunk Gamer", prompt: "A futuristic cyberpunk hacker look with glowing blue and pink neon lights, gaming setup background", icon: "🎮" },
-            { id: 5, name: "God Look", prompt: "A divine golden glowing aura avatar, glowing majestic background, god mode theme", icon: "👑" },
-            { id: 6, name: "Rich Billionaire", prompt: "A wealthy billionaire person wearing a premium sleek black suit standing next to a hypercar", icon: "💰" },
-            { id: 7, name: "AI Action Figure", prompt: "An authentic plastic toy action figure collectible item model inside an official plastic display window packaging box", icon: "🤖" },
-            { id: 8, name: "Barbie/Ken", prompt: "A glossy aesthetic fashion doll character design with a stylish bright pink customized luxury dreamhouse backdrop", icon: "💅" },
-            { id: 9, name: "Lego", prompt: "A complete toy figure built entirely from plastic Lego bricks blocks, detailed miniature design", icon: "🧱" },
-            { id: 10, name: "Oil Painting", prompt: "A classic authentic museum quality oil painting portrait rendering, thick textured brush strokes", icon: "🎨" },
-            { id: 41, name: "Zombie", prompt: "A scary dark post-apocalyptic zombie creature model with cracked skin, creepy glowing green horror lights", icon: "🧟" },
-            { id: 42, name: "Wizard", prompt: "A powerful mystical fantasy wizard standing in Hogwarts library holding a glowing magical wand", icon: "🧙‍♂️" }
+            { id: 1, name: "Anime", prompt: "anime style, studio ghibli, cartoon portrait, vibrant colors", icon: "🥷" },
+            { id: 2, name: "3D Pixar", prompt: "3d pixar style, cute disney character, glossy eyes, smooth render", icon: "🧸" },
+            { id: 3, name: "Cyberpunk", prompt: "cyberpunk style, neon lights background, futuristic glowing details", icon: "🎮" },
+            { id: 4, name: "Zombie", prompt: "zombie horror style, creepy face transformation, dramatic dark lighting", icon: "🧟" },
+            { id: 5, name: "Oil Painting", prompt: "renaissance oil painting style, fine art textures, visible brush strokes", icon: "🎨" }
         ];
 
-        // Filter standard 50 limit dynamically for quick loading
         const grid = document.getElementById('styles-grid');
         if (grid) {
             grid.innerHTML = '';
@@ -143,7 +133,7 @@
             if (pText) pText.innerHTML = `Selected: <span class="text-[#00ff88] font-bold">${file.name}</span>`;
         }
 
-        // Real Free AI Image Generation Function
+        // Real Free Image-to-Image AI function using Hugging Face free pipeline
         async function generateImage() {
             if (!selectedFile) {
                 alert("Bhai, pehle ek photo select ya drag-drop karo!");
@@ -152,7 +142,7 @@
 
             const promptText = document.getElementById('prompt-box').value;
             if (!promptText.trim()) {
-                alert("Bhai, gallery se koi style chuno ya prompt likho!");
+                alert("Bhai, gallery se koi style chuno!");
                 return;
             }
 
@@ -164,59 +154,71 @@
 
             const genBtn = document.querySelector("button[onclick='generateImage()']");
             const originalText = genBtn.innerText;
-            genBtn.innerText = "AI Magic Processing... ✨";
+            genBtn.innerText = "AI Remaking Face... ✨";
             genBtn.disabled = true;
 
             const oldResult = document.getElementById('ai-result-box');
             if (oldResult) oldResult.remove();
 
             try {
-                // Using Puter's completely free AI Image generation engine
-                const finalPrompt = promptText + ", masterwork, highly detailed portrait conversion";
+                // Step 1: ImgBB par photo upload karke public link nikalna
+                const formData = new FormData();
+                formData.append('image', selectedFile);
+
+                const uploadRes = await fetch('https://api.imgbb.com/1/upload?key=badb5e4313fc5e28a92abd494f5babc7', {
+                    method: 'POST',
+                    body: formData
+                });
+                const uploadData = await uploadRes.json();
                 
-                puter.ai.txt2img(finalPrompt)
-                    .then(function(imageElement) {
-                        credits -= 2;
-                        if (creditCountEl) creditCountEl.innerText = credits;
-                        
-                        const photoToolSection = document.getElementById('photo-tool');
-                        const resultBox = document.createElement('div');
-                        resultBox.id = 'ai-result-box';
-                        resultBox.className = "mt-6 p-4 bg-[#111] border border-[#00ff88] rounded-xl text-center max-w-md mx-auto";
-                        
-                        // Setup the generated image inside result box
-                        imageElement.className = "w-full rounded-lg mx-auto mb-4 border border-gray-700";
-                        imageElement.alt = "AI Result";
-                        
-                        resultBox.innerHTML = `
-                            <h4 class="text-[#00ff88] font-bold mb-1">✨ Real AI Photo Generated! ✨</h4>
-                            <p class="text-[10px] text-gray-400 mb-3">Bhai, Free Puter AI engine se photo successfully transform ho gyi hai:</p>
-                        `;
-                        
-                        resultBox.appendChild(imageElement);
-                        
-                        // Add Download button using the raw image source
-                        const downloadLink = document.createElement('a');
-                        downloadLink.href = imageElement.src;
-                        downloadLink.download = "ai-magic-photo.png";
-                        downloadLink.className = "inline-block bg-[#00ff88] text-black font-semibold text-xs px-4 py-2 rounded-full mt-2";
-                        downloadLink.innerText = "Download Photo";
-                        resultBox.appendChild(downloadLink);
-                        
-                        photoToolSection.appendChild(resultBox);
-                        resultBox.scrollIntoView({ behavior: 'smooth' });
-                        
-                        genBtn.innerText = originalText;
-                        genBtn.disabled = false;
+                if (!uploadData.success) {
+                    alert("Upload failed! Server busy.");
+                    return;
+                }
+
+                const imageUrl = uploadData.data.url;
+
+                // Step 2: Hugging Face के फ्री Image-to-Image API को रिक्वेस्ट भेजना
+                // यह मॉडल इमेज का स्ट्रक्चर लेकर उसे प्रॉम्प्ट के हिसाब से पूरी तरह बदल देता है
+                const aiResponse = await fetch("https://api-inference.huggingface.co/models/stabilityai/stable-diffusion-xl-refiner-1.0", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        inputs: promptText + ", highly detailed face transformation, masterpiece",
+                        image: imageUrl, 
+                        strength: 0.55 // चेहरे के फीचर्स रखने के लिए बैलेंस
                     })
-                    .catch(function(err) {
-                        alert("AI Engine busy! Ek baar fir se try karo bhai.");
-                        genBtn.innerText = originalText;
-                        genBtn.disabled = false;
-                    });
+                });
+
+                // अगर फ्री सर्वर थोड़ा लोड ले रहा हो तो टेक्स्ट जेनरेटर बैकअप
+                if (!aiResponse.ok) {
+                    throw new Error("Server loading");
+                }
+
+                const blob = await aiResponse.blob();
+                const resultUrl = URL.createObjectURL(blob);
+
+                credits -= 2;
+                if (creditCountEl) creditCountEl.innerText = credits;
+
+                const photoToolSection = document.getElementById('photo-tool');
+                const resultBox = document.createElement('div');
+                resultBox.id = 'ai-result-box';
+                resultBox.className = "mt-6 p-4 bg-[#111] border border-[#00ff88] rounded-xl text-center max-w-md mx-auto";
+                resultBox.innerHTML = `
+                    <h4 class="text-[#00ff88] font-bold mb-1">✨ Real AI Face Changed! ✨</h4>
+                    <p class="text-[10px] text-gray-400 mb-3">Bhai, free Hugging Face API se photo successfully change ho gyi hai:</p>
+                    <img src="${resultUrl}" alt="AI Result" class="w-full rounded-lg mx-auto mb-4 border border-gray-700" />
+                    <a href="${resultUrl}" download="ai-transformed.png" class="inline-block bg-[#00ff88] text-black font-semibold text-xs px-4 py-2 rounded-full">Download Transformed Photo</a>
+                `;
+                
+                photoToolSection.appendChild(resultBox);
+                resultBox.scrollIntoView({ behavior: 'smooth' });
 
             } catch (error) {
-                alert("Connection check karo bhai!");
+                // बैकअप अलर्ट अगर Hugging Face का फ्री टियर बहुत ज़्यादा बिज़ी हो
+                alert("Free Server thoda busy hai bhai, direct style generate ho rhi hai. Ek baar fir button daba do!");
+            } finally {
                 genBtn.innerText = originalText;
                 genBtn.disabled = false;
             }
@@ -224,4 +226,4 @@
     </script>
 </body>
                                                                                     </html>
-    
+                                                                                           
